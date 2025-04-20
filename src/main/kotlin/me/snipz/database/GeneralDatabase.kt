@@ -14,7 +14,7 @@ abstract class GeneralDatabase {
         }
     }
 
-    fun query(sql: String, resultSetHandler: (ResultSet) -> Unit, vararg params: Any) {
+    fun query(sql: String, resultSetHandler: (ResultSet) -> Unit, vararg params: Any?) {
         withConnection { connection ->
             connection.prepareStatement(sql).use {
                 params.forEachIndexed { index, param ->
@@ -27,7 +27,7 @@ abstract class GeneralDatabase {
             }
         }
     }
-    fun update(sql: String, vararg params: Any): Int {
+    fun update(sql: String, vararg params: Any?): Int {
         var updateRows = 0
         withConnection { connection ->
             connection.prepareStatement(sql).use {
