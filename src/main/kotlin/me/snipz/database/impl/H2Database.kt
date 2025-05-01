@@ -11,7 +11,7 @@ class H2Database(private val path: String): GeneralDatabase() {
     }
 
     override fun getConnection(): Connection {
-        val connection = DriverManager.getConnection("jdbc:h2:$path;MODE=MySQL")
+        val connection = DriverManager.getConnection("jdbc:h2:file:$path;MODE=MySQL", "sa", "")
         return connection
     }
 
